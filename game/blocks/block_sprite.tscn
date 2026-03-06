@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dwvv8oky3bybl"]
+
+[ext_resource type="Script" uid="uid://cib4gc15hlh3f" path="res://game/blocks/scripts/block_sprite.gd" id="1_w0km5"]
+
+[node name="BlockSprite" type="Node2D" unique_id=752660765]
+script = ExtResource("1_w0km5")

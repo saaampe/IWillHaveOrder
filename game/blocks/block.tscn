@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://cdwpufb6s3f7b"]
+
+[ext_resource type="Script" uid="uid://bv0drtjotwsem" path="res://game/blocks/scripts/block.gd" id="1_bces4"]
+[ext_resource type="PackedScene" uid="uid://dwvv8oky3bybl" path="res://game/blocks/block_sprite.tscn" id="2_w1hq8"]
+[ext_resource type="Script" uid="uid://pef5ibuo5dwe" path="res://game/blocks/resources/block_color_resource.gd" id="3_8ypri"]
+[ext_resource type="Texture2D" uid="uid://fd3dfwhwgn4s" path="res://assets/art/colorblind_sprites/cb_1.png" id="4_gorwl"]
+[ext_resource type="SpriteFrames" uid="uid://bhkr6bad8icck" path="res://game/blocks/resources/block_colors/blue_sprite_frames.tres" id="5_gorwl"]
+[ext_resource type="Texture2D" uid="uid://bnnnmmr5c0yxb" path="res://assets/art/colorblind_sprites/cb_2.png" id="6_taxxd"]
+[ext_resource type="SpriteFrames" uid="uid://3kfphedevn0w" path="res://game/blocks/resources/block_colors/red_sprite_frames.tres" id="7_taxxd"]
+[ext_resource type="Texture2D" uid="uid://ta8b13swl10y" path="res://assets/art/colorblind_sprites/cb_3.png" id="8_tfhjh"]
+[ext_resource type="SpriteFrames" uid="uid://d2dqufadjax1u" path="res://game/blocks/resources/block_colors/green_sprite_frames.tres" id="9_tfhjh"]
+[ext_resource type="Texture2D" uid="uid://bth52bk1kprj4" path="res://assets/art/colorblind_sprites/cb_4.png" id="10_qcpi6"]
+[ext_resource type="SpriteFrames" uid="uid://qtsdc45c4pmi" path="res://game/blocks/resources/block_colors/pink_sprite_frames.tres" id="11_qcpi6"]
+[ext_resource type="Texture2D" uid="uid://kdt0osqggby4" path="res://assets/art/colorblind_sprites/cb_5.png" id="12_qwxn4"]
+[ext_resource type="SpriteFrames" uid="uid://bq3sa4h70s8s0" path="res://game/blocks/resources/block_colors/sand_sprite_frames.tres" id="13_qwxn4"]
+[ext_resource type="Texture2D" uid="uid://bdaxxxi4yx7bf" path="res://assets/art/colorblind_sprites/cb_6.png" id="14_k1kcm"]
+[ext_resource type="SpriteFrames" uid="uid://c7xrdymjmjk0u" path="res://game/blocks/resources/block_colors/yellow_sprite_frames.tres" id="15_k1kcm"]
+
+[sub_resource type="Resource" id="Resource_taxxd"]
+script = ExtResource("3_8ypri")
+color = 1
+sprite_frames = ExtResource("5_gorwl")
+color_blind_texture = ExtResource("4_gorwl")
+metadata/_custom_type_script = "uid://pef5ibuo5dwe"
+
+[sub_resource type="Resource" id="Resource_tfhjh"]
+script = ExtResource("3_8ypri")
+color = 2
+sprite_frames = ExtResource("7_taxxd")
+color_blind_texture = ExtResource("6_taxxd")
+metadata/_custom_type_script = "uid://pef5ibuo5dwe"
+
+[sub_resource type="Resource" id="Resource_qcpi6"]
+script = ExtResource("3_8ypri")
+color = 3
+sprite_frames = ExtResource("9_tfhjh")
+color_blind_texture = ExtResource("8_tfhjh")
+metadata/_custom_type_script = "uid://pef5ibuo5dwe"
+
+[sub_resource type="Resource" id="Resource_qwxn4"]
+script = ExtResource("3_8ypri")
+color = 4
+sprite_frames = ExtResource("11_qcpi6")
+color_blind_texture = ExtResource("10_qcpi6")
+metadata/_custom_type_script = "uid://pef5ibuo5dwe"
+
+[sub_resource type="Resource" id="Resource_k1kcm"]
+script = ExtResource("3_8ypri")
+color = 5
+sprite_frames = ExtResource("13_qwxn4")
+color_blind_texture = ExtResource("12_qwxn4")
+metadata/_custom_type_script = "uid://pef5ibuo5dwe"
+
+[sub_resource type="Resource" id="Resource_fjy2x"]
+script = ExtResource("3_8ypri")
+color = 6
+sprite_frames = ExtResource("15_k1kcm")
+color_blind_texture = ExtResource("14_k1kcm")
+metadata/_custom_type_script = "uid://pef5ibuo5dwe"
+
+[node name="Block" type="Node2D" unique_id=1593835978 node_paths=PackedStringArray("block_sprite")]
+script = ExtResource("1_bces4")
+block_sprite = NodePath("BlockSprite")
+
+[node name="BlockSprite" parent="." unique_id=1029388794 instance=ExtResource("2_w1hq8")]
+color_list = Array[ExtResource("3_8ypri")]([SubResource("Resource_taxxd"), SubResource("Resource_tfhjh"), SubResource("Resource_qcpi6"), SubResource("Resource_qwxn4"), SubResource("Resource_k1kcm"), SubResource("Resource_fjy2x")])
