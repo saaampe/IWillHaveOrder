@@ -2,14 +2,19 @@ class_name BlockSprite
 extends Node2D
 
 @export var color_list : Array[BlockColorResource]
+
 var block_sprites : Dictionary
+var block_color_blind_sprites : Dictionary
+var color_blind_material : ShaderMaterial = preload("uid://5x5vutdb3gut")
+var sprite_list : Array[AnimatedSprite2D] = []
 
 func _ready() -> void:
-	pass
+	MenuSettings.color_blind_mode_changed.connect(_on_color_blind_mode_changed)
 
 func setup(block_array : Array[Array], block_size : int) -> void:
 	for bc_resource : BlockColorResource in color_list:
-		block_sprites[bc_resource.color] = bc_resource.texture
+		block_sprites[bc_resource.color] = bc_resource.sprite_frames
+		block_color_blind_sprites[bc_resource.color] = bc_resource.color_blind_texture
 	for col_n in range(len(block_array)):
 		for row_n in range(len(block_array[col_n])):
 			var color : Block.BlockColors = block_array[col_n][row_n]
@@ -34,18 +39,25 @@ func setup(block_array : Array[Array], block_size : int) -> void:
 						elif pos_neigh_arr[y][x] == 1 and cur_neighbours[x][y] == 0:
 							correct_match = false
 				if correct_match:
-					var new_sprite : Sprite2D = Sprite2D.new()
-					new_sprite.texture = block_sprites[color]
-					new_sprite.hframes = 17
-					new_sprite.vframes = 5
+					var new_sprite : AnimatedSprite2D = AnimatedSprite2D.new()
+					new_sprite.sprite_frames = block_sprites[color]
 					var frame_index : Array =  neighbour_map[pos_neigh]
-					print(frame_index)
-					new_sprite.frame = frame_index[0] + frame_index[1] * new_sprite.hframes
-					print(new_sprite.frame)
-					new_sprite.position.x = col_n * block_size + block_size / 2
-					new_sprite.position.y = row_n * block_size + block_size / 2
+					new_sprite.frame = frame_index[0] + frame_index[1] * 17
+					new_sprite.animation = "default"
+					new_sprite.position.x = col_n * block_size + block_size / 2.0
+					new_sprite.position.y = row_n * block_size + block_size / 2.0
+					new_sprite.material = color_blind_material.duplicate()
+					new_sprite.material.set_shader_parameter("overlay_texture", block_color_blind_sprites[color])
 					add_child(new_sprite)
+					sprite_list.append(new_sprite)
+					_on_color_blind_mode_changed(MenuSettings.color_blind_mode)
 			
+func _on_color_blind_mode_changed(is_color_blind : bool) -> void:
+	for sprite : AnimatedSprite2D in sprite_list:
+		sprite.material.set_shader_parameter("is_active", is_color_blind)
+
+
+
 
 var neighbour_map : Dictionary = {
 	str([[2,0,0],

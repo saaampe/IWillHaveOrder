@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://5x5vutdb3gut"]
+
+[ext_resource type="Shader" uid="uid://y7nsb1kouon6" path="res://game/blocks/resources/shaders/color_blind_block_shader.gdshader" id="1_70k2p"]
+
+[resource]
+shader = ExtResource("1_70k2p")
+shader_parameter/blend_mode = 0
+shader_parameter/overlay_opacity = 0.5
+shader_parameter/overlay_tint = Color(1, 1, 1, 1)
+shader_parameter/overlay_scale = Vector2(1, 1)
+shader_parameter/overlay_offset = Vector2(0, 0)
+shader_parameter/mask_to_sprite = true
+shader_parameter/scroll_speed = Vector2(0, 0)
